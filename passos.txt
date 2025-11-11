@@ -1,0 +1,4 @@
+Criar as pastas (Views - Components - Models - ViewModels - Converters)
+Adicionar os arquivos das Views -> Components -> Models -> ViewModels -> Converters
+Adicionar as rotas na AppShell.xaml.cs
+Definir a estrutura de navegação principal no AppShell.xaml

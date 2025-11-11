@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Olhuz.Views.LoginPage"
+             BackgroundColor="#BDE1FF"
+             Shell.FlyoutBehavior="Disabled">
+    
+    <Grid ColumnDefinitions="*,*" Style="{StaticResource ContainerGridStyle}">
+
+        <!-- ====================== COLUNA ESQUERDA ====================== -->
+        <Grid Grid.Column="0" BackgroundColor="White">
+
+            <Image Source="seta1.png" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="65" Aspect="AspectFit" Margin="0,0,0,10" />
+
+            <VerticalStackLayout Style="{StaticResource WelcomePanelStyle}">
+
+                <Image Style="{StaticResource AuthScreenLogoStyle}"/>
+
+                <Label
+                    Text="Bem-Vindo&#x0a;novamente ao olhuz" Style="{StaticResource HeaderLabelStyle}"/>
+
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- ====================== COLUNA DIREITA ====================== -->
+        <Grid Grid.Column="1">
+
+            <!-- É o container do formulário de login.
+            Dica: para telas menores, ideal torná-lo responsivo com WidthRequest dinâmico. -->
+            <Border Style="{StaticResource AuthFormContainerBorderStyle}" >
+
+                <!-- Container principal dos campos de formulário. -->
+                <VerticalStackLayout Spacing="16">
+
+                    <Label Text="Acesse sua Conta" Style="{StaticResource FormLabelStyle}"/>
+
+                    <!-- ===== CAMPO DE E-MAIL ===== -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="E-mail" Style="{StaticResource FieldLabelStyle}" />
+
+                        <Border Style="{StaticResource FormEntryBorderStyle}">
+                            <Entry Text="{Binding Email, Mode=TwoWay}" Placeholder="Digite seu email" Keyboard="Email" Style="{StaticResource FormEntryStyle}"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- ===== CAMPO DE SENHA ===== -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Senha" Style="{StaticResource FieldLabelStyle}" />
+
+                        <Border Style="{StaticResource FormEntryBorderStyle}">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Entry Text="{Binding Password, Mode=TwoWay}" x:Name="PasswordEntry" Grid.Column="0" Keyboard="Password" IsPassword="True" Style="{StaticResource FormEntryStyle}"/>
+
+                                <Image x:Name="PasswordIcon" Grid.Column="1" Source="olhofechado.png" Margin="6,0,0,0">
+                                    <!-- Ícone de olho: alterna entre mostrar/ocultar senha. -->
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding TogglePasswordVisibilityCommand}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                            </Grid>
+                        </Border>
+
+                        <Label Text="Redefinir senha" Style="{StaticResource LinkTextStyle}"/>
+                    </VerticalStackLayout>
+
+                    <!-- ===== BOTÃO DE LOGIN ===== -->
+                    <Button Text="Entrar" Command="{Binding LoginCommand}" Style="{StaticResource PrimaryButtonStyle}"/>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </Grid>
+
+    <!--<Grid
+        ColumnDefinitions="*, *"
+        VerticalOptions="Fill"
+        HorizontalOptions="Fill">
+
+        <Grid
+            Grid.Column="0"
+            RowDefinitions="*,*"
+            RowSpacing="30"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+
+            <Image
+                Grid.Row="0"
+                Source="logo.png"
+                Aspect="AspectFit"
+                MaximumHeightRequest="120" />
+            
+            <Label
+                Grid.Row="1"
+                Text="Bem-vindo&#x0a;novamente ao olhuz"
+                TextColor="DarkBlue"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                FontSize="50" />
+
+        </Grid>
+
+        <Border
+            Grid.Column="1"
+            BackgroundColor="White"
+            Shadow="0 0 18 Black 0.2"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 60,0,60,0">
+
+            <Grid
+                RowDefinitions="*,*,Auto,*,Auto,*,*"
+                RowSpacing="16"
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+
+                <Label
+                    Grid.Row="0"
+                    Text="Acesse sua Conta"
+                    TextColor="Black"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    FontSize="40"/>
+
+                <Label
+                    Grid.Row="1"
+                    Text="E-mail"
+                    TextColor="Black"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Start"
+                    FontSize="Medium"
+                    Margin="20, 40, 0, 0"/>
+
+                <Border Grid.Row="2" Stroke="#11327C" StrokeThickness="2" Padding="0, -2, 0, -2" StrokeShape="RoundRectangle 30" HorizontalOptions="Fill" VerticalOptions="Fill"  HeightRequest="56">
+                    <Entry Keyboard="Email" Text="{Binding Email}" Placeholder="email@email.com" PlaceholderColor="DarkGray" TextTransform="Lowercase" BackgroundColor="White" Margin="0" MinimumWidthRequest="400" />
+                </Border>
+
+                <Label
+                    Grid.Row="3"
+                    Text="Senha"
+                    TextColor="Black"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Start"
+                    FontSize="Medium"
+                    Margin="20, 16, 0, 0"/>
+
+                <Border Grid.Row="4" Stroke="#11327C" StrokeThickness="2" Padding="0, -2, 0, -2" StrokeShape="RoundRectangle 30" HorizontalOptions="Fill" VerticalOptions="Fill"  HeightRequest="56">
+                    <Entry Keyboard="Password" IsPassword="True" Text="{Binding Senha}" Placeholder="Digite sua senha" PlaceholderColor="DarkGray" BackgroundColor="White" Margin="0" MinimumWidthRequest="400" MaxLength="20" />
+                </Border>
+
+                <Label Grid.Row="5" Text="Redefinir senha" TextColor="DodgerBlue" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Micro" HorizontalOptions="End" Margin="0" />
+
+                <Button Grid.Row="6" Text="Entrar" Command="{Binding LoginCommand}" TextColor="White" FontSize="Medium" BackgroundColor="MidnightBlue" VerticalOptions="Center" HorizontalOptions="Center" Padding="16" MinimumWidthRequest="180" CornerRadius="16" Margin="0,30,0,0" />
+
+            </Grid>
+        </Border>
+
+    </Grid>-->
+
+</ContentPage>

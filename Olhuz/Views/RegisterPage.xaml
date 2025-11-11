@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Olhuz.Views.RegisterPage">
+    <Grid ColumnDefinitions="*,*">
+
+        <!-- ====================== COLUNA ESQUERDA ====================== -->
+        <Grid Grid.Column="0" BackgroundColor="White">
+
+            <Image Source="seta1.png" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="65" Aspect="AspectFit" Margin="0,0,0,10" />
+
+            <VerticalStackLayout Style="{StaticResource WelcomePanelStyle}">
+
+                <Image Style="{StaticResource AuthScreenLogoStyle}"/>
+
+                <Label
+                    Text="Bem-Vindo&#x0a;ao Olhuz" Style="{StaticResource HeaderLabelStyle}"/>
+
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- ====================== COLUNA DIREITA (FORMULÁRIO) ====================== -->
+        <Grid Grid.Column="1">
+            <ScrollView>
+                <Border Style="{StaticResource AuthFormContainerBorderStyle}">
+
+                    <VerticalStackLayout Spacing="16">
+
+                        <Label Text="Cadastre-se" Style="{StaticResource FormLabelStyle}"/>
+
+                        <!-- Nome completo -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Nome completo" Style="{StaticResource FieldLabelStyle}" />
+                            <Border Style="{StaticResource FormEntryBorderStyle}">
+                                <Entry 
+                                    Placeholder="Digite seu nome" 
+                                    Text="{Binding FullName, Mode=TwoWay}"
+                                    Style="{StaticResource FormEntryStyle}" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Data de nascimento -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Data de nascimento" Style="{StaticResource FieldLabelStyle}"/>
+                            <Border Style="{StaticResource FormDatePickerBorderStyle}">
+                                <DatePicker 
+                                    Date="{Binding BirthDate, Mode=TwoWay}"
+                                    Format="dd/MM/yyyy" 
+                                    Style="{StaticResource FormDatePickerStyle}"/>
+                            </Border>
+                        </VerticalStackLayout>
+
+
+                        <!-- E-mail -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="E-mail" Style="{StaticResource FieldLabelStyle}" />
+                            <Border Style="{StaticResource FormEntryBorderStyle}">
+                                <Entry 
+                                    Placeholder="Digite seu email" 
+                                    Text="{Binding Email, Mode=TwoWay}"
+                                    Keyboard="Email" 
+                                    Style="{StaticResource FormEntryStyle}"/>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Senha -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Senha" Style="{StaticResource FieldLabelStyle}" />
+
+                            <Border Style="{StaticResource FormEntryBorderStyle}">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Entry 
+                                        Grid.Column="0" 
+                                        Placeholder="Digite sua senha" 
+                                        Text="{Binding Password, Mode=TwoWay}"
+                                        Keyboard="Password" 
+                                        IsPassword="{Binding IsPasswordVisible, Converter={StaticResource InverseBooleanConverter}}"
+                                        Style="{StaticResource FormEntryStyle}"/>
+
+                                    <Image Grid.Column="1" Source="{Binding PasswordIconSource}" Margin="6,0,0,0">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding TogglePasswordVisibilityCommand}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Grid>
+                            </Border>
+
+                            <!-- Barras de Força da Senha vinculadas à ViewModel -->
+                            <HorizontalStackLayout Spacing="8" Margin="16,8,0,0">
+                                <BoxView Color="{Binding Bar1Color}" WidthRequest="60" HeightRequest="5" CornerRadius="2"/>
+                                <BoxView Color="{Binding Bar2Color}" WidthRequest="60" HeightRequest="5" CornerRadius="2"/>
+                                <BoxView Color="{Binding Bar3Color}" WidthRequest="60" HeightRequest="5" CornerRadius="2"/>
+                                <BoxView Color="{Binding Bar4Color}" WidthRequest="60" HeightRequest="5" CornerRadius="2"/>
+                            </HorizontalStackLayout>
+
+                            <Label Text="{Binding PasswordStrengthText}" FontSize="12" TextColor="Gray" Margin="24,0,0,0" />
+
+                        </VerticalStackLayout>
+
+                        <!-- Confirmar senha -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Confirmar senha" Style="{StaticResource FieldLabelStyle}"/>
+                            <Border Style="{StaticResource FormEntryBorderStyle}">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Entry
+                                        Grid.Column="0"
+                                        Text="{Binding ConfirmPassword, Mode=TwoWay}"
+                                        Placeholder="Confirme sua senha"
+                                        Keyboard="Password"
+                                        IsPassword="{Binding IsPasswordVisible, Converter={StaticResource InverseBooleanConverter}}" 
+                                        Style="{StaticResource FormEntryStyle}"/>
+
+                                    <!-- A imagem de toggle é a mesma, vinculada à mesma Source/Command -->
+                                    <Image Grid.Column="1" Source="{Binding PasswordIconSource}" Margin="6,0,0,0">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding TogglePasswordVisibilityCommand}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Seleção dos termos de uso -->
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="0" HorizontalOptions="Center" VerticalOptions="Center" MaximumWidthRequest="400">
+
+                            <!-- CheckBox vinculada à IsTermsAccepted -->
+                            <CheckBox Grid.Column="0" IsChecked="{Binding IsTermsAccepted, Mode=TwoWay}"/>
+
+                            <Label Grid.Column="1" LineBreakMode="WordWrap" VerticalTextAlignment="Center" HorizontalTextAlignment="Start">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span FontSize="16" Text="Ao continuar, você concorda com os "/>
+
+                                        <!-- Termos de Uso (Comando) -->
+                                        <Span FontSize="16" Text="Termos de Uso" TextDecorations="Underline" TextColor="Blue">
+                                            <Span.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding OpenTermsCommand}" />
+                                            </Span.GestureRecognizers>
+                                        </Span>
+
+                                        <Span FontSize="16" Text=" e a " />
+
+                                        <!-- Política de Privacidade (Comando) -->
+                                        <Span FontSize="16" Text="Política de Privacidade" TextDecorations="Underline" TextColor="Blue">
+                                            <Span.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding OpenPrivacyPolicyCommand}"/>
+                                            </Span.GestureRecognizers>
+                                        </Span>
+
+                                        <Span FontSize="16" Text=", conforme a Lei Geral de Proteção de Dados (LGPD)."/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+
+                        <!-- Botão de Cadastro (Habilitação controlada por CanExecute/IsBusy) -->
+                        <Button
+                            Text="Cadastrar" 
+                            Command="{Binding RegisterCommand}" 
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+            </ScrollView>
+        </Grid>
+    </Grid>
+</ContentPage>

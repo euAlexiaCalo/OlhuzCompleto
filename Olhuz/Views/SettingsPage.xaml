@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:Olhuz.Components"
+             x:Class="Olhuz.Views.SettingsPage"
+             Title="Configurações">
+
+
+    <ContentPage.Resources>
+
+        <Style TargetType="Border" x:Key="CardBorderStyle">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 16" />
+            <Setter Property="Shadow" Value="0 0 16 Gray 0.2" />
+            <Setter Property="Padding" Value="40,20" />
+            <Setter Property="Margin" Value="0,10" />
+            <Setter Property="StrokeThickness" Value="0" />
+            <Setter Property="VerticalOptions" Value="Start" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="SettingsSectionLabel">
+            <Setter Property="TextColor" Value="#0F1B4E" />
+            <Setter Property="FontSize" Value="Large" />
+            <Setter Property="Margin" Value="60,0,0,0" />
+        </Style>
+
+        <Style TargetType="HorizontalStackLayout" x:Key="LayoutSettingsEnd">
+            <Setter Property="HorizontalOptions" Value="End" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Spacing" Value="20" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="ConfigurationLabel">
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontSize" Value="Micro" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Start" />
+        </Style>
+
+        <Style TargetType="Button" x:Key="VolumeButtonStyle">
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="BackgroundColor" Value="LightGray" />
+            <Setter Property="CornerRadius" Value="40" />
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="2*, 8*">
+
+        <components:HeaderView Grid.Row="0" />
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Margin="100,30" Spacing="10">
+                <!-- SEÇÃO 1 - LEITURA E TELA -->
+                <Label Text="Leitura de Tela" Style="{StaticResource SettingsSectionLabel}" />
+
+                <Border Style="{StaticResource CardBorderStyle}" >
+                    <Grid RowDefinitions="*,*,*" RowSpacing="20">
+
+                        <Grid Grid.Row="0" ColumnDefinitions="*,*" VerticalOptions="Center" Padding="60,0,60,0">
+
+                            <Label Grid.Column="0" Text="Desativar Leitura de Tela" Style="{StaticResource ConfigurationLabel}"/>
+
+                            <Switch Grid.Column="1" IsToggled="True" OnColor="#007ACC" ThumbColor="White" Scale="1.5" MinimumHeightRequest="0" MinimumWidthRequest="0" HorizontalOptions="End"/>
+
+                        </Grid>
+
+                        <BoxView Grid.Row="1" HeightRequest="1" Color="LightGray" Margin="0" />
+
+                        <Grid Grid.Row="2" ColumnDefinitions="*,*" VerticalOptions="Center" Padding="60,0">
+
+                            <Label Grid.Column="0" Text="Velocidade da Fala" Style="{StaticResource ConfigurationLabel}" />
+
+                            <HorizontalStackLayout Grid.Column="1" Style="{StaticResource LayoutSettingsEnd}">
+
+                                <Button Text="0.5x" Command="{Binding SelecionarVelocidadeCommand}" BackgroundColor="Transparent" TextColor="#007ACC" CornerRadius="20" Padding="15, 5" BorderColor="#007ACC" BorderWidth="2" MinimumWidthRequest="80"/>
+
+                                <Button Text="1.0x" Command="{Binding SelecionarVelocidadeCommand}" BackgroundColor="Transparent" TextColor="#007ACC" CornerRadius="20" Padding="15, 5" BorderColor="#007ACC" BorderWidth="2" MinimumWidthRequest="80"/>
+
+                                <Button Text="1.5x" Command="{Binding SelecionarVelocidadeCommand}" BackgroundColor="#007ACC" TextColor="White" CornerRadius="20" Padding="15, 5" BorderColor="#007ACC" BorderWidth="2" MinimumWidthRequest="80" FontAttributes="Bold"/>
+
+                                <Button Text="2.0x" Command="{Binding SelecionarVelocidadeCommand}" BackgroundColor="Transparent" TextColor="#007ACC" CornerRadius="20" Padding="15, 5" BorderColor="#007ACC" BorderWidth="2" MinimumWidthRequest="80"/>
+
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <!-- SEÇÃO 2 - VOZ E FALA -->
+
+                <Label Text="Voz e Fala" Style="{StaticResource SettingsSectionLabel}" />
+
+                <Border Style="{StaticResource CardBorderStyle}">
+                    <Grid RowDefinitions="*,*,*" RowSpacing="20">
+
+                        <Grid Grid.Row="0" ColumnDefinitions="*,*" VerticalOptions="Center" Padding="60,0,60,0">
+
+                            <Label Text="Tipo de Voz" Style="{StaticResource ConfigurationLabel}" />
+
+                            <HorizontalStackLayout Grid.Column="1" Style="{StaticResource LayoutSettingsEnd}">
+
+                                <Button Text="Feminino" BackgroundColor="#007ACC" TextColor="White" CornerRadius="20" Padding="25,10" FontAttributes="Bold" WidthRequest="120"/>
+
+                                <Button Text="Masculino" BackgroundColor="White" TextColor="#007ACC" CornerRadius="20" Padding="25,10" BorderColor="#007ACC" BorderWidth="1" WidthRequest="120"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+
+                        <BoxView Grid.Row="1" HeightRequest="1" Color="LightGray" Margin="0" />
+
+                        <Grid Grid.Row="2" ColumnDefinitions="2*,8*" VerticalOptions="Center" Padding="60,0">
+
+                            <Label Grid.Column="0" Text="Volume do Som" Style="{StaticResource ConfigurationLabel}" />
+
+                            <HorizontalStackLayout Grid.Column="1" Style="{StaticResource LayoutSettingsEnd}">
+
+                                <Button Text="-" Command="{Binding VolumeCommand}" Style="{StaticResource VolumeButtonStyle}" />
+
+                                <Slider Minimum="0" Maximum="100" Value="60" ThumbColor="#007ACC" MinimumTrackColor="#007ACC" MaximumTrackColor="#D0D0D0" MinimumWidthRequest="600" Margin="0,5,0,0" />
+
+                                <Button Text="+" Command="{Binding VolumeCommand}" Style="{StaticResource VolumeButtonStyle}" />
+
+                            </HorizontalStackLayout>
+
+                        </Grid>
+
+                    </Grid>
+                </Border>
+
+                <!-- SEÇÃO 3 - INTERFACE -->
+
+                <Label Text="Interface" Style="{StaticResource SettingsSectionLabel}" />
+
+                <Border Style="{StaticResource CardBorderStyle}">
+                    <Grid RowDefinitions="*" RowSpacing="20">
+
+                        <Grid Grid.Row="0" ColumnDefinitions="*,*" Padding="60,0,60,0">
+                            <Label Grid.Column="0" Text="Modo de Exibição" Style="{StaticResource ConfigurationLabel}" />
+                            <HorizontalStackLayout Grid.Column="1" Style="{StaticResource LayoutSettingsEnd}">
+
+                                <Button Text="Claro" BackgroundColor="#007ACC" TextColor="White" CornerRadius="20" Padding="25,10" FontAttributes="Bold" WidthRequest="120"/>
+
+                                <Button Text="Escuro" BackgroundColor="White" TextColor="#007ACC" CornerRadius="20" Padding="25,10" BorderColor="#007ACC" BorderWidth="1" WidthRequest="120"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

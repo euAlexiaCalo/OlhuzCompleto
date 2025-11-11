@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:Olhuz.Components"
+             x:Class="Olhuz.Views.MyAccountPage"
+             Title="Minha Conta">
+
+    <Grid
+		RowDefinitions="2*,8*">
+
+        <components:HeaderView Grid.Row="0" />
+
+        <ScrollView
+			Grid.Row="1">
+            <StackLayout Margin="100,30" Spacing="30">
+                <Label Text="Olá, Nome do Usuário"
+                  FontSize="26"
+                  FontAttributes="Bold"
+                  TextColor="Black"
+                  HorizontalOptions="Start"
+                       Margin="60,0,0,0" />
+                <!-- INFORMAÇÕES -->
+                <Border BackgroundColor="White" StrokeShape="RoundRectangle 16" StrokeThickness="0" Shadow="0 0 16 Gray 0.2" Padding="30" Margin="0" >
+                    <VerticalStackLayout Spacing="20">
+                        <Border BackgroundColor="#F4F6F8" StrokeShape="RoundRectangle 8" StrokeThickness="0" Padding="16">
+                            <Label Text="Nome:  Nome do Usuário"
+                          FontSize="22"
+                          TextColor="Black"/>
+                        </Border>
+                        <Border BackgroundColor="#F4F6F8" StrokeShape="RoundRectangle 8" StrokeThickness="0" Padding="16">
+                            <Label Text="Data de Nascimento: 00/00/0000"
+                          FontSize="22"
+                          TextColor="Black"/>
+                        </Border>
+                        <Border BackgroundColor="#F4F6F8" StrokeShape="RoundRectangle 8" StrokeThickness="0" Padding="16">
+                            <Label Text="Email: email@email.com"
+                          FontSize="22"
+                          TextColor="Black"/>
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+                <!-- BOTÕES -->
+                <HorizontalStackLayout
+                    Spacing="40"
+                        HorizontalOptions="Center">
+                    <Button Text="Alterar senha"
+                       BackgroundColor="#E0E0E0"
+                       TextColor="Black"
+                            FontSize="22"
+                       WidthRequest="200"
+                       HeightRequest="60"
+                       CornerRadius="30"/>
+                    <Button Text="Sair da conta"
+                       BackgroundColor="#E97A4D"
+                       TextColor="White"
+                            FontSize="22"
+                       WidthRequest="200"
+                       HeightRequest="60"
+                       CornerRadius="30"/>
+                </HorizontalStackLayout>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
