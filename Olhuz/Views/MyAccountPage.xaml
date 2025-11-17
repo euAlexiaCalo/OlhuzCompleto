@@ -12,31 +12,88 @@
 
         <ScrollView
 			Grid.Row="1">
-            <StackLayout Margin="100,30" Spacing="30">
+            <VerticalStackLayout Margin="100,30" Spacing="30">
+
+                <!-- SEÇÃO 1 - LEITURA E TELA -->
+                <Label Text="Informações Pessoais" Style="{StaticResource SettingsSectionLabel}" />
+
+                <Border Style="{StaticResource CardBorderStyle}" >
+                    <HorizontalStackLayout Spacing="40" Padding="0" VerticalOptions="Start">
+                        <Image Grid.Column="0" Source="logo.png" WidthRequest="180" />
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="16">
+                            <Label x:Name="NameLabel" Text="Nome: " FontSize="22" TextColor="Black"/>
+
+                            <Label x:Name="BirthDateLabel" Text="Data de Nascimento: " FontSize="22" TextColor="Black"/>
+
+                            <Label x:Name="EmailLabel" Text="Email: " FontSize="22" TextColor="Black"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- SEÇÃO 2 - AÇÕES DA CONTA -->
+
+                <Label Text="Ações da Conta" Style="{StaticResource SettingsSectionLabel}" />
+
+                <Border Style="{StaticResource CardBorderStyle}">
+                    <HorizontalStackLayout Spacing="20" VerticalOptions="Center" Padding="0">
+                        <Button Text="Alterar Senha" Clicked="" Style="{StaticResource SettingButtonStyle}"/>
+
+                        <Button Text="Sair da Conta" Clicked="" Style="{StaticResource SettingButtonStyle}" />
+
+                        <Button Text="Excluir Conta" Clicked="" Style="{StaticResource SettingButtonStyle}" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- SEÇÃO 3 - INFORMAÇÕES ADICIONAIS -->
+
+                <Label Text="Informações Adicionais" Style="{StaticResource SettingsSectionLabel}" />
+
+                <Border Style="{StaticResource CardBorderStyle}">
+                    <VerticalStackLayout Grid.Column="1" Spacing="16">
+                        <Label x:Name="VersaoLabel" Text="Versão " FontSize="22" TextColor="Black"/>
+                        <HorizontalStackLayout>
+                        <Label x:Name="TermosLabel" Text="Termos de privacide" FontSize="22" TextColor="Black"/>
+
+                        <Label x:Name="SuporteLabel" Text="Email: " FontSize="22" TextColor="Black"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+
                 <!-- Label de Boas-vindas com x:Name -->
+                <!--
                 <Label x:Name="WelcomeLabel"
                        Text="Olá, [Carregando Nome...]"
                        Style="{StaticResource UserNameLabel}" />
 
+                -->
                 <!-- INFORMAÇÕES -->
+                <!--
                 <Border Style="{StaticResource UserDataCard}">
                     <VerticalStackLayout Spacing="20">
                         <Border Style="{StaticResource IndividualUserDataCard}">
-                            <!-- Label com x:Name para o Nome -->
+                            -->
+                <!-- Label com x:Name para o Nome -->
+                <!--
                             <Label x:Name="NameLabel" 
                                    Text="Nome: "
                                    FontSize="22"
                                    TextColor="Black"/>
                         </Border>
                         <Border Style="{StaticResource IndividualUserDataCard}">
-                            <!-- Label com x:Name para a Data de Nascimento -->
+                            -->
+                <!-- Label com x:Name para a Data de Nascimento -->
+                <!--
                             <Label x:Name="BirthDateLabel" 
                                    Text="Data de Nascimento: "
                                    FontSize="22"
                                    TextColor="Black"/>
                         </Border>
                         <Border Style="{StaticResource IndividualUserDataCard}">
-                            <!-- Label com x:Name para o Email -->
+                            -->
+                <!-- Label com x:Name para o Email -->
+                <!--
                             <Label x:Name="EmailLabel" 
                                    Text="Email: "
                                    FontSize="22"
@@ -44,8 +101,12 @@
                         </Border>
                     </VerticalStackLayout>
                 </Border>
+                
+                
 
+                -->
                 <!-- BOTÕES -->
+                <!--
                 <HorizontalStackLayout
                     Spacing="40"
                     HorizontalOptions="Center">
@@ -57,8 +118,8 @@
                     <Button Text="Sair da conta" 
                             Clicked="OnLogoutClicked"
                             Style="{StaticResource LogoutButton}"/>
-                </HorizontalStackLayout>
-            </StackLayout>
+                </HorizontalStackLayout>-->
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </ContentPage>
