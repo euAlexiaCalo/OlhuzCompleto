@@ -17,11 +17,27 @@
                 <!-- SEÇÃO 1 - LEITURA E TELA -->
                 <Label Text="Informações Pessoais" Style="{StaticResource SettingsSectionLabel}" />
 
-                <Border Style="{StaticResource CardBorderStyle}" >
+                <Border Style="{StaticResource CardBorderStyle}">
                     <HorizontalStackLayout Spacing="40" Padding="0" VerticalOptions="Start">
-                        <Image Grid.Column="0" Source="logo.png" WidthRequest="180" />
+                        <Border WidthRequest="160" HeightRequest="160"
+								StrokeShape="Ellipse"
+                                Stroke="Gray"
+								StrokeThickness="2"
+								BackgroundColor="#E0E0E0"
+								HorizontalOptions="Start"
+								VerticalOptions="Center">
+                            <Image x:Name="ProfileImage"
+								   Source="profile.png"
+							Aspect="AspectFill"
+							HorizontalOptions="Center"
+							VerticalOptions="Center" />
+                            <!--
+							<Border.GestureRecognizers>
+								<TapGestureRecognizer Tapped="OnProfileImageTapped"/>
+							</Border.GestureRecognizers>-->
+                        </Border>
 
-                        <VerticalStackLayout Grid.Column="1" Spacing="16">
+                        <VerticalStackLayout Grid.Column="1" Spacing="16" VerticalOptions="Center">
                             <Label x:Name="NameLabel" Text="Nome: " FontSize="22" TextColor="Black"/>
 
                             <Label x:Name="BirthDateLabel" Text="Data de Nascimento: " FontSize="22" TextColor="Black"/>
@@ -33,15 +49,15 @@
 
                 <!-- SEÇÃO 2 - AÇÕES DA CONTA -->
 
-                <Label Text="Ações da Conta" Style="{StaticResource SettingsSectionLabel}" />
+                <Label Text="Ações da Conta" Style="{StaticResource SettingsSectionLabel}"/>
 
-                <Border Style="{StaticResource CardBorderStyle}">
-                    <HorizontalStackLayout Spacing="20" VerticalOptions="Center" Padding="0">
-                        <Button Text="Alterar Senha" Clicked="" Style="{StaticResource SettingButtonStyle}"/>
+                <Border Style="{StaticResource CardBorderStyle}" >
+                    <HorizontalStackLayout Spacing="40" VerticalOptions="Center" Padding="0">
+                        <Button Text="Alterar Senha" Clicked="OnChangePasswordClicked" Style="{StaticResource ChangePasswordButton}" />
 
-                        <Button Text="Sair da Conta" Clicked="" Style="{StaticResource SettingButtonStyle}" />
+                        <Button Text="Sair da Conta" Clicked="OnLogoutClicked" Style="{StaticResource LogoutButton}" />
 
-                        <Button Text="Excluir Conta" Clicked="" Style="{StaticResource SettingButtonStyle}" />
+                        <Button Text="Excluir Conta" Clicked="OnDeleteClicked" Style="{StaticResource DeleteButton}" />
                     </HorizontalStackLayout>
                 </Border>
 
@@ -51,74 +67,34 @@
 
                 <Border Style="{StaticResource CardBorderStyle}">
                     <VerticalStackLayout Grid.Column="1" Spacing="16">
-                        <Label x:Name="VersaoLabel" Text="Versão " FontSize="22" TextColor="Black"/>
-                        <HorizontalStackLayout>
-                        <Label x:Name="TermosLabel" Text="Termos de privacide" FontSize="22" TextColor="Black"/>
+                        <Label x:Name="VersaoLabel" Text="" FontSize="22" TextColor="Black"/>
 
-                        <Label x:Name="SuporteLabel" Text="Email: " FontSize="22" TextColor="Black"/>
-                        </HorizontalStackLayout>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span  x:Name="TermosLabel" Text="Termos de privacide" FontSize="22" TextColor="Black" TextDecorations="Underline">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="PoliticaDePrivacidadeTapped"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span x:Name="SuporteLabel" Text="Suporte" FontSize="22" TextColor="Black" TextDecorations="Underline">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="SuporteTapped"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
                     </VerticalStackLayout>
                 </Border>
-
-
-                <!-- Label de Boas-vindas com x:Name -->
-                <!--
-                <Label x:Name="WelcomeLabel"
-                       Text="Olá, [Carregando Nome...]"
-                       Style="{StaticResource UserNameLabel}" />
-
-                -->
-                <!-- INFORMAÇÕES -->
-                <!--
-                <Border Style="{StaticResource UserDataCard}">
-                    <VerticalStackLayout Spacing="20">
-                        <Border Style="{StaticResource IndividualUserDataCard}">
-                            -->
-                <!-- Label com x:Name para o Nome -->
-                <!--
-                            <Label x:Name="NameLabel" 
-                                   Text="Nome: "
-                                   FontSize="22"
-                                   TextColor="Black"/>
-                        </Border>
-                        <Border Style="{StaticResource IndividualUserDataCard}">
-                            -->
-                <!-- Label com x:Name para a Data de Nascimento -->
-                <!--
-                            <Label x:Name="BirthDateLabel" 
-                                   Text="Data de Nascimento: "
-                                   FontSize="22"
-                                   TextColor="Black"/>
-                        </Border>
-                        <Border Style="{StaticResource IndividualUserDataCard}">
-                            -->
-                <!-- Label com x:Name para o Email -->
-                <!--
-                            <Label x:Name="EmailLabel" 
-                                   Text="Email: "
-                                   FontSize="22"
-                                   TextColor="Black"/>
-                        </Border>
-                    </VerticalStackLayout>
-                </Border>
-                
-                
-
-                -->
-                <!-- BOTÕES -->
-                <!--
-                <HorizontalStackLayout
-                    Spacing="40"
-                    HorizontalOptions="Center">
-
-                    <Button Text="Alterar senha" 
-                            Clicked="OnChangePasswordClicked"
-                            Style="{StaticResource ChangePasswordButton}"/>
-
-                    <Button Text="Sair da conta" 
-                            Clicked="OnLogoutClicked"
-                            Style="{StaticResource LogoutButton}"/>
-                </HorizontalStackLayout>-->
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

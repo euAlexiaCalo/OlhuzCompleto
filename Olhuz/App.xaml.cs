@@ -1,4 +1,6 @@
-﻿namespace Olhuz
+﻿using Microsoft.Maui.Controls;
+
+namespace Olhuz
 {
     public partial class App : Application
     {

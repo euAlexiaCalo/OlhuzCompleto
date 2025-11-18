@@ -5,7 +5,7 @@
     xmlns:models="clr-namespace:Olhuz.Models"
     x:Class="Olhuz.Components.SideMenuView"
     x:Name="MenuView"
-    BackgroundColor="{StaticResource OneBlue}">
+    BackgroundColor="{AppThemeBinding Light={StaticResource OneBlue}, Dark={StaticResource DarkBackground}}">
 
     <!-- Conte�do principal -->
     <Grid RowDefinitions="2*, 8.5*">
@@ -28,7 +28,7 @@
             <Label
                 Text="Olhuz"
                 FontSize="40"
-				TextColor="Black"
+				TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
                 VerticalOptions="Center"/>
 
         </HorizontalStackLayout>
@@ -91,7 +91,7 @@
                                         Aspect="AspectFit"/>
                                     <Label
                                         Text="{Binding Title}"
-                                        TextColor="Black"
+                                        TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
                                         FontSize="24"
                                         VerticalOptions="Center"/>
                                 </HorizontalStackLayout>
