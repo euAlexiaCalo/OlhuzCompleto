@@ -1,19 +1,11 @@
 ﻿namespace Olhuz.Views
-
 {
-
     public partial class SettingsPage : ContentPage
-
     {
-
         // Variáveis de estado do Controller (simulando o Model)
-
         private bool _isScreenReaderEnabled = true;
-
         private double _speechSpeed = 1.0;
-
         private string _voiceType = "Masculino";
-
         private string _currentTheme = "Claro"; // Claro, Escuro
 
 
@@ -21,41 +13,25 @@
         // Cores para destacar o botão ativo - Serão carregadas dos recursos
 
         private Color _activeButtonColor;
-
         private Color _inactiveButtonColor;
 
         // NOVAS VARIÁVEIS para cores de texto baseadas na sua regra
 
         private Color _activeTextColor; // Cor do texto para botão ativo (Fundo SevenBlue)
-
         private Color _inactiveTextColor; // Cor do texto para botão inativo
 
-
-
         public SettingsPage()
-
         {
-
             InitializeComponent();
 
-
-
             // Define o Title da página
-
             Title = "Configurações";
 
-
-
             // Chamada para carregar as cores dos recursos XAML antes de aplicar as configurações
-
             LoadButtonColorsFromResources();
 
-
-
             // Carrega e aplica as configurações iniciais do "Model"
-
             LoadCurrentSettings();
-
         }
 
 
@@ -63,21 +39,15 @@
         /// Tenta carregar as cores de destaque dos botões a partir do dicionário de recursos XAML
 
         private void LoadButtonColorsFromResources()
-
         {
-
             // 1. Cor para o fundo ATIVO (SevenBlue) e Cor do texto INATIVO
-
             // (Mantém a lógica existente)
 
             _activeButtonColor = GetResourceColor("LightPrimaryButton", Color.FromArgb("#3884CF"));
 
             _inactiveTextColor = Colors.White;
 
-
-
             // 3. Cor do texto ATIVO (White, já definido como padrão no campo, mas para clareza)
-
             _activeTextColor = Colors.White;
 
 
@@ -85,39 +55,26 @@
             // 💡 Determina a chave e a cor padrão com base no tema atual
 
             var currentTheme = Application.Current.RequestedTheme;
-
             string inactiveKey;
-
             Color defaultInactiveColor;
 
-
-
             if (currentTheme == AppTheme.Dark)
-
             {
-
                 // Tema Escuro: usa a chave
-
                 inactiveKey = "DarkSecondaryButton";
 
                 // Padrão para tema escuro, se a chave não for encontrado
-
                 defaultInactiveColor = Color.FromArgb("#5D6065");
-
             }
 
             else // AppTheme.Light ou AppTheme.Unspecified
-
             {
-
                 // Tema Claro: usa a chave
 
                 inactiveKey = "LightSecondaryButton";
 
                 // Padrão para tema claro
-
                 defaultInactiveColor = Color.FromArgb("#B8B8B8");
-
             }
 
 
